@@ -19,9 +19,9 @@ namespace APIReadify.Controllers
         [HttpGet]
         // GET: api/Token
         [Route("/api/Token")]
-        public Guid GetToken()
+        public string GetToken()
         {
-            return Guid.Parse("eb65085d-699c-4c69-ab0e-6c8d38160997");
+            return "\"eb65085d-699c-4c69-ab0e-6c8d38160997\"" ;
         }
 
         [Produces("application/json")]
@@ -29,30 +29,37 @@ namespace APIReadify.Controllers
         [Route("/api/")]
         public string Get()
         {
-            return "Interview with Readify";
+            return "\"Interview with Readify\"";
         }
 
         [Produces("application/json")]
         [HttpGet]
         //[Produces("application/json")]
         [Route("/api/ReverseWords")]
-        public string ReverseWords(string sentence)
+        public JsonResult ReverseWords(string sentence)
         {
-
             string temp = "", result = "";
-            for (int i = 0; i < sentence.Length; i++)
-                if (sentence[i] != ' ')
+            if (sentence == string.Empty || sentence == null)
+            {
+                return Json(result);
+            }
+            else
+            {
+                
+                for (int i = 0; i < sentence.Length; i++)
+                    if (sentence[i] != ' ')
 
-                    temp = sentence[i] + temp;
-                else
-                {
-                    result += temp + sentence[i];
-                    temp = "";
-                }
+                        temp = sentence[i] + temp;
+                    else
+                    {
+                        result += temp + sentence[i];
+                        temp = "";
+                    }
 
-            result += temp;
-
-            return result;
+                result += temp;
+                return Json(result);
+            }
+            
         }
 
 
@@ -60,14 +67,14 @@ namespace APIReadify.Controllers
         [HttpGet]
         [Route("/api/Fibonacci")]
         //[FormatFilter]
-        public long Fibonacci(long n)
+        public ActionResult Fibonacci(long n)
         {
             long counter = n;
             var fibona = new List<long>();
 
             if (n == 0)
             {
-                return 0;
+                BadRequest();
             }
             //check for negative value, 
             //if it is negative convert to positive by multiplying by -1
@@ -91,7 +98,7 @@ namespace APIReadify.Controllers
             {
                 result = result * -1;
             }
-            return result;
+            return Ok(result);
         }
 
 
@@ -110,26 +117,26 @@ namespace APIReadify.Controllers
         [Produces("application/json")]
         [HttpGet]
         [Route("/api/TriangleType")]
-        public string TriangleShape(int a, int b, int c)
+        public ActionResult TriangleShape(int a, int b, int c)
         {
             if ((a + b > c && a + c > b && b + c > a) && (a > 0 && b > 0 && c > 0))
             {
                 if (a == b && b == c)
                 {
-                    return "Equilateral";
+                    return Ok("\"Equilateral\"");
                 }
                 else if (a == b || b == c || a == c)
                 {
-                    return "Isosceles";
+                    return Ok("\"Isosceles\"");
                 }
                 else
                 {
-                    return "Scalene";
+                    return Ok("\"Scalene\"");
                 }
             }
             else
             {
-                return "Error";
+                return Ok("\"Error\"");
             }
         }
 
