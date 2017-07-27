@@ -10,11 +10,12 @@ using System.Runtime.Serialization;
 namespace APIReadify.Controllers
 {
 
-   // [Produces("application/json")]
+    [Produces("application/json")]
     [Route("api/[controller]")] ///[controller]
     public class ReadifyInterviewController : Controller
     {
 
+        [Produces("application/json")]
         [HttpGet]
         // GET: api/Token
         [Route("/api/Token")]
@@ -23,6 +24,7 @@ namespace APIReadify.Controllers
             return Guid.Parse("eb65085d-699c-4c69-ab0e-6c8d38160997");
         }
 
+        [Produces("application/json")]
         [HttpGet]
         [Route("/api/")]
         public string Get()
@@ -30,6 +32,7 @@ namespace APIReadify.Controllers
             return "Interview with Readify";
         }
 
+        [Produces("application/json")]
         [HttpGet]
         //[Produces("application/json")]
         [Route("/api/ReverseWords")]
@@ -52,6 +55,8 @@ namespace APIReadify.Controllers
             return result;
         }
 
+
+        [Produces("application/json")]
         [HttpGet]
         [Route("/api/Fibonacci")]
         //[FormatFilter]
@@ -102,47 +107,33 @@ namespace APIReadify.Controllers
             return data;
         }
 
+        [Produces("application/json")]
         [HttpGet]
-
         [Route("/api/TriangleType")]
-        public TriangleType TriangleShape(int a, int b, int c)
+        public string TriangleShape(int a, int b, int c)
         {
             if ((a + b > c && a + c > b && b + c > a) && (a > 0 && b > 0 && c > 0))
             {
                 if (a == b && b == c)
                 {
-                    return TriangleType.Equilateral;
+                    return "Equilateral";
                 }
                 else if (a == b || b == c || a == c)
                 {
-                    return TriangleType.Isosceles;
+                    return "Isosceles";
                 }
                 else
                 {
-                    return TriangleType.Scalene;
+                    return "Scalene";
                 }
             }
             else
             {
-                return TriangleType.Error;
+                return "Error";
             }
         }
 
-        public enum TriangleType : int
-        {
-
-            [EnumMemberAttribute()]
-            Error = 0,
-
-            [EnumMemberAttribute()]
-            Equilateral = 1,
-
-            [EnumMemberAttribute()]
-            Isosceles = 2,
-
-            [EnumMemberAttribute()]
-            Scalene = 3,
-        }
+       
 
 
 
