@@ -11,13 +11,12 @@ namespace APIReadify.Controllers
 {
 
     [Produces("application/json")]
-    [Route("api/[controller]")] ///[controller]
+    [Route("api/[controller]")] 
     public class ReadifyInterviewController : Controller
     {
 
         [Produces("application/json")]
         [HttpGet]
-        // GET: api/Token
         [Route("/api/Token")]
         public string GetToken()
         {
@@ -34,7 +33,6 @@ namespace APIReadify.Controllers
 
         [Produces("application/json")]
         [HttpGet]
-        //[Produces("application/json")]
         [Route("/api/ReverseWords")]
         public JsonResult ReverseWords(string sentence)
         {
@@ -66,7 +64,7 @@ namespace APIReadify.Controllers
         [Produces("application/json")]
         [HttpGet]
         [Route("/api/Fibonacci")]
-        //[FormatFilter]
+
         public ActionResult Fibonacci(long n)
         {
             long counter = n;
