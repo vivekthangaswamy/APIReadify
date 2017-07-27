@@ -6,14 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\APIReadify - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\APIReadify2017 - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\APIReadify201707 - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\APIReadify2017v1 - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\APIReadifyInterv - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\APIReadifyInterview - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\readifyapiround - Web Deploy.pubxml" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Properties\PublishProfiles\" />

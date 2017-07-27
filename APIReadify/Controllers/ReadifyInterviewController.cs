@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APIReadify.Controllers
 {
 
-    [Produces("application/json")]
+   // [Produces("application/json")]
     [Route("api/[controller]")] ///[controller]
     public class ReadifyInterviewController : Controller
     {
@@ -30,34 +30,25 @@ namespace APIReadify.Controllers
         [Route("/api/ReverseWords")]
         public string ReverseWords(string sentence)
         {
-            
-            if (sentence == null)
-                throw new ArgumentNullException();
 
-            var result = "";
-            var ipWord = "";
+            string temp = "", result = "";
+            for (int i = 0; i < sentence.Length; i++)
+                if (sentence[i] != ' ')
 
-            foreach (var c in sentence)
-            {
-                if (c != ' ')
-                    ipWord += c;
+                    temp = sentence[i] + temp;
                 else
                 {
-                    for (int j = ipWord.Length - 1; j >= 0; j--)
-                        result += ipWord[j];
-
-                    result += " ";
-                    ipWord = "";
+                    result += temp + sentence[i];
+                    temp = "";
                 }
-            }
 
-            for (int j = ipWord.Length - 1; j >= 0; j--)
-                result += ipWord[j];
+            result += temp;
 
             return result;
         }
 
         [Route("/api/Fibonacci")]
+        [FormatFilter]
         public long Fibonacci(long n)
         {
             long counter = n;
